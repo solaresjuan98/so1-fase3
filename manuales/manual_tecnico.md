@@ -1,8 +1,11 @@
-### Universidad de San Carlos
-### Sistemas Operativos 1
+# Universidad de San Carlos
+## Sistemas Operativos 1
 ### Grupo 22
-### Primer Semestre 2022
+
+# Primer Semestre 2022
 ### Proyecto 1 Fase 2
+
+<br>
 
 # Manual Técnico
 
