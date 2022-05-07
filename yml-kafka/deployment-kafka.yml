@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer
+  namespace: consumer-kafka
+  labels:
+    app: consumer
+spec:
+  selector:
+    matchLabels:
+      app: consumer
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: consumer
+    spec:
+      hostname: grpc-pod-host
+      containers:
+        - name: consumer
+          image: jd2200/consumer-kafka:v2
+
+---

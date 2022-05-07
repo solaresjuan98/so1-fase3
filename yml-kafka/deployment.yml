@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc
+  namespace: grpc-deploy
+  labels:
+    app: grpc
+spec:
+  selector:
+    matchLabels:
+      app: grpc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: grpc
+    spec:
+      hostname: grpc-pod-host
+      containers:
+        - name: grpc-client-api
+          image: jd2200/clientgrpc:v2
+          env:
+          - name: HOST
+            value: grpc-pod-host
+          ports:
+            - containerPort: 5000
+        - name: grpc-server
+          image: jd2200/server-grpc-go:v2
+          ports:
+            - containerPort: 50555
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: grpc
+  name: svc-grpc
+spec:
+  type: LoadBalancer
+  selector:
+    app: grpc
+  ports:
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
